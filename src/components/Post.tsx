@@ -1,13 +1,8 @@
-import React from "react";
-
-const names: string[] = ["Alice", "Bob", "Charlie"];
-
-function PostComponent(): React.JSX.Element {
-  const randomIndex = Math.floor(Math.random() * names.length);
+function PostComponent(props: { author: string; body: string }) {
   return (
     <div>
-      <p>{names[randomIndex]}</p>
-      <p>React is awesome</p>
+      <p>{props.author}</p>
+      <p>{props.body}</p>
     </div>
   );
 }
