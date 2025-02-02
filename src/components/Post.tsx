@@ -1,9 +1,11 @@
+import classes from "./Post.module.css";
+
 function PostComponent(props: { author: string; body: string }) {
   return (
-    <div>
-      <p>{props.author}</p>
+    <li className={classes.post}>
+      <p className={classes.author}>{props.author}</p>
       <p>{props.body}</p>
-    </div>
+    </li>
   );
 }
 

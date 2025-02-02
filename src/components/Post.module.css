@@ -1,0 +1,16 @@
+.post {
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: lightblue;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: animateIn 1s ease-out forwards;
+}
+
+.author {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: aliceblue;
+  margin: 0;
+  text-transform: uppercase;
+}
