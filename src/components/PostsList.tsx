@@ -5,14 +5,9 @@ import NewPost from './NewPost';
 import Modal from './Modal';
 import classes from './PostsList.module.css';
 
-function PostsList() {
-    const [ isModalOpen, setIsModalOpen ] = useState(true);
+function PostsList({onCloseModal, isModalOpen}: {onCloseModal: () => void, isModalOpen: boolean}) {
     const [ bodyValue, setBodyValue ] = useState('');
     const [ authorValue, setAuthorValue ] = useState('');
-
-    function changeModalHandler() {
-        setIsModalOpen(false)
-    }
 
     function changeBodyHandler(event: React.ChangeEvent<HTMLTextAreaElement>) {
         setBodyValue(event.target.value)
@@ -23,7 +18,7 @@ function PostsList() {
     }
 
     return <>
-        {isModalOpen && <Modal onClose={changeModalHandler}>
+        {isModalOpen && <Modal onClose={onCloseModal}>
             <NewPost onBodyChange={changeBodyHandler} onAuthorChange={changeAuthorHandler} />
         </Modal>}
         <ul className={classes.posts}>
