@@ -6,16 +6,19 @@ import Modal from './Modal';
 import classes from './PostsList.module.css';
 
 function PostsList({onCloseModal, isModalOpen}: {onCloseModal: () => void, isModalOpen: boolean}) {
-
+    const [ posts, setPosts ] = useState<{body: string, author: string}[]>([]);
+    const [ isFetching, setIsFetching ] = useState(false);
     useEffect(() => {
         async function fetchPosts() {
+            setIsFetching(true);
             const response = await fetch('http://localhost:8080/posts');
             const data = await response.json();
             setPosts(data.posts);
+            setIsFetching(false);
         }
         fetchPosts();
     }, []);
-    const [ posts, setPosts ] = useState<{body: string, author: string}[]>([]);
+
 
     function addPostHandler(postData: {body: string, author: string}) {
         fetch('http://localhost:8080/posts', {
@@ -31,11 +34,11 @@ function PostsList({onCloseModal, isModalOpen}: {onCloseModal: () => void, isMod
         {isModalOpen && <Modal onClose={onCloseModal}>
             <NewPost onCancel={onCloseModal} onAddPost={addPostHandler} />
         </Modal>}
-        {posts.length > 0 && <ul className={classes.posts}>
+        {!isFetching && posts.length > 0 && <ul className={classes.posts}>
             {posts.map((post, index) => <Post key={index} body={post.body} author={post.author} />)}
         </ul>}
-        {posts.length === 0 && <p>No posts yet. Add one?</p>}
-
+        {!isFetching &&posts.length === 0 && <p>No posts yet. Add one?</p>}
+        {isFetching && <p>Loading...</p>}
     </>
 }
 
