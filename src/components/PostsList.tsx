@@ -15,9 +15,11 @@ function PostsList({onCloseModal, isModalOpen}: {onCloseModal: () => void, isMod
         {isModalOpen && <Modal onClose={onCloseModal}>
             <NewPost onCancel={onCloseModal} onAddPost={addPostHandler} />
         </Modal>}
-        <ul className={classes.posts}>
+        {posts.length > 0 && <ul className={classes.posts}>
             {posts.map((post, index) => <Post key={index} body={post.body} author={post.author} />)}
-        </ul>
+        </ul>}
+        {posts.length === 0 && <p>No posts yet. Add one?</p>}
+
     </>
 }
 
