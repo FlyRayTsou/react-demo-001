@@ -19,7 +19,7 @@ function PostsList({onCloseModal, isModalOpen}: {onCloseModal: () => void, isMod
 
     return <>
         {isModalOpen && <Modal onClose={onCloseModal}>
-            <NewPost onBodyChange={changeBodyHandler} onAuthorChange={changeAuthorHandler} />
+            <NewPost onBodyChange={changeBodyHandler} onAuthorChange={changeAuthorHandler} onCancel={onCloseModal} />
         </Modal>}
         <ul className={classes.posts}>
             <Post author={authorValue} body={bodyValue}/>
