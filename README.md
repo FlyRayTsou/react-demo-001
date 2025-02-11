@@ -1,50 +1,27 @@
-# React + TypeScript + Vite
+# Introduction
+This is a project which learns from the Udemy Business course. This course is called "Next.js 15 & React - The Complete Guide"'s Optional: React Refresher.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- URL: https://www.udemy.com/course/nextjs-react-the-complete-guide/
 
-Currently, two official plugins are available:
+# What I learned
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Conventions
+1. Component file names should be in uppercase.
+2. Component file name’s function should start with an uppercase letter.
+3. Convention: put module CSS file next to JSX file.
+4. Convention: `const [xxxValue, setxxxValue] = useState('')`.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## React Rules
+1. Component with lowercase. e.g. `return <post />` React will see it as a default component and try to find it in default components. Uppercase component will be considered as a custom component.
+2. Curly braces `{}` to show variables in JSX.
+3. Only one root element; if not a good fit, you can use an empty element `<>` and `</>` or `<React.Fragment>`.
+4. React lift state up: using a parent component or some component have two components then pass by props to the component.
+5. When updating data that depends on existing data, use function form.
+    1. X setPosts([postData, …posts]) 
+    2. O setPosts((existing) => [postData, …existingPosts])
+6. When fetching data for the initial page, use `useEffect`. Or you will meet an infinite loop for `useState`.
+7. `useEffect` execution timing is decided by the second parameter.
+8. `Link` component can be used to navigate between pages. It will not reload the page. It will just change the content of the page.
+9. Router sets which path to which component. It also has properties like `children`, `action`, `loader`.
+10. Loader: executed before the page is loaded. It is a good place to fetch data.
+11. Action: executed after some action is done. It is a good place to update data.
